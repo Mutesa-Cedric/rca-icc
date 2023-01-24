@@ -13,7 +13,7 @@ const Feed = () => {
 					height={50}
 				/>
 				<p className='font-md font-sans text-coolGray-500 text-left p-2 text-sm'>
-					The so-called year11 kids surprise their opponents with a draw at their first official match and Welding dissapoints.
+					The so-called year1 kids surprise their opponents with a draw at their first official match and Welding dissapoints.
 				</p>
 			</div>
 		</div>
