@@ -7,22 +7,22 @@ const IndexFootball = () => {
   return (
 		<MainLayout title='Football'>
 			<div className='flex w-full flex-col mx-auto max-w-[800px]'>
-				<LiveGameCard />
+				<LiveGameCard path='/match/13'/>
 				<div className='w-full h-fit p-4 mt-4 border-2 border-gray rounded-md'>
 					<h3 className='text-slate-700 font-bold pb-4'>Upcoming Events</h3>
-					<div className='flex flex-wrap p-2 grid grid-cols-2 gap-4'>
+					<div className=' flex-wrap p-2 grid grid-cols-2 gap-4'>
 
 						<MatchCard/>
 						<MatchCard/>
 						<MatchCard/>
 						<MatchCard/>
-						<a  href={'football/fixtures'}className='  text-blue cursor-pointer'>
+						<a  href={'football/fixtures'} className='  text-blue cursor-pointer'>
 							see all >>
 						</a>
 
 					</div>
 				</div>
-				<LiveGameCard path='/match/23' />
+				
 			</div>
 		</MainLayout>
 	);
