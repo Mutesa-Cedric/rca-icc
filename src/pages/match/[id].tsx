@@ -1,23 +1,42 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import Moment from "react-moment";
 import LineUps from "../../components/Match/LineUps";
 import Stats from "../../components/Match/Stats";
 import Timeline from "../../components/Match/Timeline";
+import { useApp } from "../../contexts/AppProvider";
 import MainLayout from "../../layouts/MainLayout";
+import { fetchMatchByIdQuery } from "../../lib/queries";
+import { sanityClient } from "../../lib/sanity";
 import statistics from "../../utils/data/stats.json";
+import { Match } from "../../utils/types/types1";
 
 const MatchPage = () => {
-	const [match, setMatch] = useState<any>(null);
+	const [match, setMatch] = useState<Match | null>(null);
 	const [active, setActive] = useState("stats");
+	const router = useRouter();
+	const { id } = router.query;
 
 	const today = new Date();
-	const dateMatch = new Date(match?.fixture?.date);
+	const dateMatch = new Date(match?.date ?? "");
 	const isToday =
 		dateMatch.getDate() === today.getDate() &&
 		dateMatch.getMonth() === today.getMonth() &&
 		dateMatch.getFullYear() === today.getFullYear();
 
-	const hasStarted = match?.fixture?.status?.short !== "NS";
+	const hasStarted = match?.status?.status ?? null !== "NS";
+
+	const getMatch = async () => {
+		const match = await sanityClient.fetch(fetchMatchByIdQuery(id as string));
+		setMatch(match);
+	};
+
+	useEffect(() => {
+		if (id) {
+			getMatch();
+		}
+	}, [id]);
 
 	return (
 		<MainLayout isGeneral>
@@ -26,14 +45,18 @@ const MatchPage = () => {
 			>
 				<div className='flex px-3 items-center justify-between w-full'>
 					<p className='text-violet-400'>
-						<span className=' cursor-pointer'>{match?.league?.name}</span>
+						<span className=' cursor-pointer'>{match?.category}</span>
 						<span className={`ml-2`}>
-							{isToday ? "Today" : match?.fixture?.date.split("T")[0]}
+							{isToday ? (
+								"Today"
+							) : (
+								<Moment format='DD MMM'>{match?.date}</Moment>
+							)}
 						</span>
 					</p>
-					<p>{match?.fixture?.status?.short}</p>
+					<p>{match?.status?.status}</p>
 				</div>
-				<div className='flex py-4 max-w-[800px] w-full justify-between mx-auto mt-4'>
+				<div className='flex px-4 py-4 max-w-[800px] w-full justify-between mx-auto mt-4'>
 					<div className='flex gap-3 align-middle text-center flex-col'>
 						<div className='flex items-center gap-x-2'>
 							<Image
@@ -125,12 +148,17 @@ const MatchPage = () => {
 				</div>
 				<div className='flex flex-col w-full py-3 '>
 					{!match || !hasStarted ? (
-						active ===
-						"stats" ?<Stats statistics={statistics.statistics}  />:
-						active === "lineups" ? (
-							<LineUps lineups={match?.lineups} />
+						active === "stats" ? (
+							<Stats statistics={statistics.statistics} />
+						) : active === "lineups" ? (
+							<LineUps
+								lineups={[
+									match?.stats?.homeTeamLineup,
+									match?.stats.awayTeamLineup,
+								]}
+							/>
 						) : (
-							<Timeline timeline={match?.timeline} />
+							<Timeline timeline={match?.events} />
 						)
 					) : (
 						<div className='flex flex-col items-center justify-center h-[300px]'>

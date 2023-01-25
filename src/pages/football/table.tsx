@@ -13,7 +13,7 @@ const FootTableIndex = ({ teams }: { teams: Team[] }) => {
 				<div className='float-left font-bold text-lg px-3'>
 					<h3>Standings</h3>
 				</div>
-				{/* <Table teams={teams} /> */}
+				<Table teams={teams} />
 			</div>
 		</MainLayout>
 	);

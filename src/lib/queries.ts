@@ -15,21 +15,13 @@ export const teamsFootQuery = groq`*[_type == "team" && category == "football"]{
     "logo": logo.asset->url,
 }`
 
-export const footMatchdaysQuery= groq `*[_type=="matchday" && category =="football"]{
+export const teamsStatsFootQuery = groq`*[_type == "team" && category == "football"]{
     _id,
-    date,
-    title,
-    category,
-    matches[]->{
-        _id,
-        "homeTeam ":homeTeam->name,
-        "awayTeam":homeTeam->name,
-        date,
-
-   }
+    players,
+    name,
+    "logo": logo.asset->url,
+    stats,
 }`
-
-export const teamsStatsFootQuery = groq`*[_type == "team" && category == "football"]{}`
 
 export const playersFootQuery = groq`*[_type == "team" && category == "football"]{
     _id,
@@ -44,7 +36,7 @@ export const playersFootQuery = groq`*[_type == "team" && category == "football"
     },
 }`
 
-export const teamsBasketQuery = groq`*[_type == "team" && category == "basketball"]{
+export const teamsBasketQuery = groq`*[_type == "team" && category == "basketball"] {
     _id,
     players,
     name,
@@ -58,4 +50,58 @@ export const teamsVolleyQuery = groq`*[_type == "team" && category == "volleybal
     name,
     category,
     "logo": logo.asset->url,
+}`
+
+export const fetchMatchesQuery = groq`*[_type == "match"]{
+    _id,
+    date,
+    "homeTeam": homeTeam->{
+        _id,
+        name,
+        "logo": logo.asset->url,
+    },
+    "awayTeam": awayTeam->{
+        _id,
+        name,
+        "logo": logo.asset->url,
+    },
+    stats,
+    events,
+    status,
+    category,
+}`
+
+export const fetchMatchByIdQuery = (id: string) => groq`*[_type == "match" && _id == "${id}"]{
+    _id,
+    date,
+    "homeTeam": homeTeam->{
+        _id,
+        name,
+        "logo": logo.asset->url,
+        players[]->{
+            _id,
+            displayName,
+            fullName,
+            position,
+            "profile": profile.asset->url,
+            number,
+        },
+    },
+    "awayTeam": awayTeam->{
+        _id,
+        name,
+        "logo": logo.asset->url,
+        players[]->{
+            _id,
+            displayName,
+            fullName,
+            position,
+            "profile": profile.asset->url,
+            number,
+        },
+    },
+    stats,
+    events,
+    status,
+    category,
 }`

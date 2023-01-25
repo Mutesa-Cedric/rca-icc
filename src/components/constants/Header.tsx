@@ -10,7 +10,7 @@ const Header = () => {
 			</div>
 
 			<span className=' text-grey font-normal truncate text-base'>
-				<Moment format='DD MMMM YYYY'>{new Date()}</Moment>
+				<Moment format='DD MMMM YYYY'>{Date.now()}</Moment>
 			</span>
 		</div>
 	);
