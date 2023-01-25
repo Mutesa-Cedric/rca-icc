@@ -14,12 +14,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 	if (!showChild) {
 		return null;
 	}
-	
+
 	return (
 		<>
 			<Head>
 				<title>RCA-ICC</title>
-				<link rel='shortcut icon' href='favicon.svg' type='image/x-icon' />
+				<link rel='shortcut icon' href='/favicon.svg' type='image/x-icon' />
 			</Head>
 			<NextNProgress
 				color='#ff7b35'

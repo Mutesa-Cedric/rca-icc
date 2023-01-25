@@ -7,9 +7,12 @@ import { timelist, TimeType } from "../../utils/data/other";
 
 type Props = {
 	timeline: any;
+	isBasketball: boolean;
 };
 
 const Timeline = (props: Props) => {
+	if (props.isBasketball)
+		return <div className=' text-center'>Not Available</div>;
 	return (
 		<div className='flex flex-col gap-y-3 w-4/5 mx-auto border-[1px] border-gray p-3 shadow-md'>
 			{timelist.map((time: TimeType) => (
@@ -42,7 +45,9 @@ const TimeCard = (props: TimeType) => {
 					<p className='font-semibold'>Dabagire Valens</p>
 				</div>
 			)}
-      {props.image && <Image src={props.image} alt={props.image} height={314} width={500} />}
+			{props.image && (
+				<Image src={props.image} alt={props.image} height={314} width={500} />
+			)}
 			<p>{props.comment}</p>
 		</div>
 	);

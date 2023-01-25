@@ -1,25 +1,46 @@
+import Image from "next/image";
 import React from "react";
+import { Match, Team } from "../../utils/types/types1";
 
 type Props = {
-	statistics: any;
+	stats: Match["stats"];
+	teams: Team[];
 };
 
-const Stats = ({ statistics }: Props) => {
-	const awayStat = statistics[1]?.statistics;
+const Stats = ({ stats, teams }: Props) => {
+	if (!stats) return <div className=' text-center'>No Stats Available</div>;
+
+	const awayStat = Object.entries(stats?.awayTeamStats);
+	const homeStat = Object.entries(stats?.homeTeamStats);
+	const statsNames = awayStat.map((stat) => stat[0]);
+
+	console.log(awayStat, homeStat[1]);
 
 	return (
 		<div className='p-5 flex flex-col'>
 			<div className='flex items-center justify-between'>
-				<img className='w-[40px]' src={statistics[0]?.team?.logo} alt='' />
+				<Image
+					height={40}
+					width={40}
+					className='w-[30px]'
+					src={teams[0].logo ?? "/images/teamImage.svg"}
+					alt=''
+				/>
 				<p>TEAM STATS</p>
-				<img className='w-[40px]' src={statistics[1]?.team?.logo} alt='' />
+				<Image
+					height={40}
+					width={40}
+					className='w-[30px]'
+					src={teams[1].logo ?? "/images/teamImage2.svg"}
+					alt=''
+				/>
 			</div>
-			{statistics[0]?.statistics?.map((stat: any, i: number) => (
+			{new Array(statsNames.length - 1).fill(0).map((_, i: number) => (
 				<RowStat
 					key={i}
-					left={stat.value}
-					right={awayStat[i].value}
-					stat={stat.type}
+					left={homeStat[i + 1][1]}
+					right={awayStat[i + 1][1]}
+					stat={statsNames[i + 1]}
 				/>
 			))}
 		</div>
@@ -29,11 +50,19 @@ const Stats = ({ statistics }: Props) => {
 export default Stats;
 
 const RowStat = ({ left, stat, right }: any) => {
+	if (left === null || right === null) return null;
+
+	let l = left;
+	let r = right;
+	if (stat === "possession") {
+		l = `${left}%`;
+		r = `${right}%`;
+	}
 	return (
 		<div className='w-full mt-4 flex items-center justify-between'>
-			<p>{left}</p>
-			<p>{stat}</p>
-			<p>{right}</p>
+			<p>{l}</p>
+			<p className=' capitalize'>{stat}</p>
+			<p>{r}</p>
 		</div>
 	);
 };

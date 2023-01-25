@@ -1,4 +1,5 @@
 import { type } from "os";
+import { RefType } from "./types2";
 
 export type Player = {
     _id: string;
@@ -42,11 +43,26 @@ export type Event = {
 
 export type LineUp = {
     formation: string;
-    startingEleven: Player[];
-    startingFive: Player[];
+    startingEleven: RefType[];
+    startingFive: RefType[];
+}
+
+export type TeamStats = {
+    corners: number;
+    fouls: number;
+    goals: number;
+    offsides: number;
+    points: number;
+    possession: number;
+    redCards: number;
+    shots: number;
+    shotsOnTarget: number;
+    yellowCards: number;
 }
 
 export type Match = {
+	homeTeamLineup: LineUp;
+	awayTeamLineup: LineUp;
     _id: string;
     title: string;
     description: string;
@@ -57,33 +73,8 @@ export type Match = {
     events: Event[];
     category: category;
     stats: {
-        events: Event[];
-        homeTeamLineup: LineUp;
-        awayTeamLineup: LineUp;
-        awayTeamStats: {
-            corners: number;
-            fouls: number;
-            goals: number;
-            offsides: number;
-            points: number;
-            possession: number;
-            redCards: number;
-            shots: number;
-            shotsOnTarget: number;
-            yellowCards: number;
-        };
-        homeTeamStats: {
-            corners: number;
-            fouls: number;
-            goals: number;
-            offsides: number;
-            points: number;
-            possession: number;
-            redCards: number;
-            shots: number;
-            shotsOnTarget: number;
-            yellowCards: number;
-        };
+        awayTeamStats: TeamStats;
+        homeTeamStats: TeamStats;
     };
 }
 

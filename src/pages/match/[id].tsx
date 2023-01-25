@@ -25,11 +25,21 @@ const MatchPage = () => {
 		dateMatch.getMonth() === today.getMonth() &&
 		dateMatch.getFullYear() === today.getFullYear();
 
-	const hasStarted = match?.status?.status ?? null !== "NS";
+	const hasStarted = match?.status?.status !== "NS";
+
+	const isBasketball = match?.category === "basketball";
+
+	const awayScore = isBasketball
+		? match?.stats?.awayTeamStats?.points
+		: match?.stats?.awayTeamStats?.goals;
+	const homeScore = isBasketball
+		? match?.stats?.homeTeamStats?.points
+		: match?.stats?.homeTeamStats?.goals;
 
 	const getMatch = async () => {
 		const match = await sanityClient.fetch(fetchMatchByIdQuery(id as string));
-		setMatch(match);
+		console.log(match);
+		setMatch(match[0]);
 	};
 
 	useEffect(() => {
@@ -45,7 +55,9 @@ const MatchPage = () => {
 			>
 				<div className='flex px-3 items-center justify-between w-full'>
 					<p className='text-violet-400'>
-						<span className=' cursor-pointer'>{match?.category}</span>
+						<span className=' cursor-pointer capitalize'>
+							{match?.category}
+						</span>
 						<span className={`ml-2`}>
 							{isToday ? (
 								"Today"
@@ -60,14 +72,14 @@ const MatchPage = () => {
 					<div className='flex gap-3 align-middle text-center flex-col'>
 						<div className='flex items-center gap-x-2'>
 							<Image
-								src={"/images/teamImage.svg"}
+								src={match?.homeTeam.logo ?? "/images/teamImage.svg"}
 								alt='team1'
-								width={30}
-								height={20}
+								width={40}
+								height={40}
 							/>
-							<p className='text-md text-slate-700'>Y1</p>
+							<p className='text-md text-slate-700'>{match?.homeTeam.name}</p>
 						</div>
-						{!hasStarted && (
+						{hasStarted && !isBasketball && (
 							<div className='flex flex-col gap-y-1'>
 								<div className=' gap-x-2'>
 									<span className='text-md font-bold text-sm'>34'</span>
@@ -77,14 +89,18 @@ const MatchPage = () => {
 						)}
 					</div>
 					<div className='flex flex-col gap-y-3 items-center'>
-						{!hasStarted ? (
+						{hasStarted ? (
 							<>
 								<div className='flex items-center gap-x-4'>
-									<span className='text-center align-middle text-2xl'>1</span>
-									<span className=' text-sm text-slate-500 '>VS</span>
-									<span className='text-center align-middle text-2xl'>3</span>
+									<span className='text-center align-middle text-2xl'>
+										{homeScore}
+									</span>
+									<span className=' text-sm text-slate-500 '>-</span>
+									<span className='text-center align-middle text-2xl'>
+										{awayScore}
+									</span>
 								</div>
-								<span className=''>45'</span>
+								<span className=''>FT</span>
 							</>
 						) : (
 							<span className=' text-sm text-slate-500 '>VS</span>
@@ -92,15 +108,15 @@ const MatchPage = () => {
 					</div>
 					<div className='flex gap-3 align-middle text-center flex-col'>
 						<div className='flex items-center gap-x-2'>
-							<p className='text-md text-slate-700'>TVET</p>
+							<p className='text-md text-slate-700'>{match?.awayTeam.name}</p>
 							<Image
-								src={"/images/teamImage2.svg"}
+								src={match?.awayTeam.logo ?? "/images/teamImage2.svg"}
 								alt='team1'
-								width={30}
-								height={20}
+								width={40}
+								height={40}
 							/>
 						</div>
-						{!hasStarted && (
+						{hasStarted && !isBasketball && (
 							<div className='flex flex-col gap-y-1'>
 								<div className='gap-x-2 flex'>
 									<span className='text-slate text-sm'>Charles</span>
@@ -147,18 +163,24 @@ const MatchPage = () => {
 					</div>
 				</div>
 				<div className='flex flex-col w-full py-3 '>
-					{!match || !hasStarted ? (
+					{match && hasStarted ? (
 						active === "stats" ? (
-							<Stats statistics={statistics.statistics} />
+							<Stats
+								stats={match.stats}
+								teams={[match?.homeTeam, match?.awayTeam]}
+							/>
 						) : active === "lineups" ? (
 							<LineUps
 								lineups={[
-									match?.stats?.homeTeamLineup,
-									match?.stats.awayTeamLineup,
+									match?.homeTeamLineup,
+									match?.awayTeamLineup,
 								]}
+								homeTeam={match?.homeTeam}
+								awayTeam={match?.awayTeam}
+								isBasketball={isBasketball}
 							/>
 						) : (
-							<Timeline timeline={match?.events} />
+							<Timeline timeline={match?.events} isBasketball={isBasketball} />
 						)
 					) : (
 						<div className='flex flex-col items-center justify-center h-[300px]'>
