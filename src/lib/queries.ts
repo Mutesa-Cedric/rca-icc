@@ -15,6 +15,20 @@ export const teamsFootQuery = groq`*[_type == "team" && category == "football"]{
     "logo": logo.asset->url,
 }`
 
+export const footMatchdaysQuery= groq `*[_type=="matchday" && category =="football"]{
+    _id,
+    date,
+    title,
+    category,
+    matches[]->{
+        _id,
+        "homeTeam ":homeTeam->name,
+        "awayTeam":homeTeam->name,
+        date,
+
+   }
+}`
+
 export const teamsStatsFootQuery = groq`*[_type == "team" && category == "football"]{}`
 
 export const playersFootQuery = groq`*[_type == "team" && category == "football"]{
