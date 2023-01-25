@@ -1,3 +1,8 @@
+import React from "react"
+import { BiFootball, BiBasketball, BiTennisBall } from "react-icons/bi"
+import { FaUsers } from "react-icons/fa"
+import { GiVolleyballBall } from "react-icons/gi"
+
 export type Sub = {
     off: string,
     on: string,
@@ -72,4 +77,43 @@ export const timelist = [
         time: '90',
         id: '3',
     },
+]
+
+export const competitions = [
+    {
+        id: 1,
+        name: "football",
+        icon: React.createElement(BiFootball, {
+            size: 60,
+        }),
+    },
+    {
+        id: 2,
+        name: "basketball",
+        icon: React.createElement(BiBasketball, {
+            size: 60,
+        }),
+    },
+    {
+        id: 3,
+        name: "volleyball",
+        icon: React.createElement(GiVolleyballBall, {
+            size: 60,
+        }),
+    },
+    {
+        id: 4,
+        name: "debate",
+        icon: React.createElement(FaUsers, {
+            size: 60,
+        }),
+    },
+    {
+        id: 5,
+        name: "pingpong",
+        icon: React.createElement(BiTennisBall, {
+            size: 60,
+        }),
+    },
+
 ]

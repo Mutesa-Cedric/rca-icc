@@ -1,29 +1,10 @@
-import React from "react";
-import team from "../../../cms/schemas/documents/team";
+import { Team } from "../../utils/types/types1";
 
-const Table = () => {
-	const teams = [
-		{
-			name: "Y2 Coding F.C",
-			number: 1,
-		},
-		{
-			name: "Y3 Coding F.C",
-			number: 2,
-		},
-		{
-			name: "L5 Food Processing F.C",
-			number: 3,
-		},
-		{
-			name: "Y2 Coding F.C",
-			number: 4,
-		},
-		{
-			name: "Y2 Coding F.C",
-			number: 5,
-		},
-	];
+type Props = {
+	teams: Team[];
+}
+
+const Table = ({ teams }: Props) => {
 
 	return (
 		<table>
@@ -42,7 +23,7 @@ const Table = () => {
 			<tbody>
 				{teams.map((team, index) => (
 					<tr key={index}>
-						<td>{team.number}</td>
+						<td>{index+1}</td>
 						<td>{team.name}</td>
 						<td>0</td>
 						<td>0</td>

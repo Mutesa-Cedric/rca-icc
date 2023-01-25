@@ -10,3 +10,15 @@ export type Player = {
     number: number;
     position: string[];
 }
+
+export enum category {
+    FOOTBALL, BASKETBALL, VOLLEYBALL, PINGPONG, DEBATE
+}
+
+export type Team = {
+    _id: string;
+    name: string;
+    logo: string;
+    players: Player[];
+    category: category
+}

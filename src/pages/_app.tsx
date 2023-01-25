@@ -2,13 +2,14 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import NextNProgress from "nextjs-progressbar";
+import AppProvider from "../contexts/AppProvider";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
 				<title>RCA-ICC</title>
-				<link rel="shortcut icon" href="favicon.svg" type="image/x-icon" />
+				<link rel='shortcut icon' href='favicon.svg' type='image/x-icon' />
 			</Head>
 			<NextNProgress
 				color='#ff7b35'
@@ -17,7 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 				height={3}
 				showOnShallow={true}
 			/>
-			<Component {...pageProps} />
+			<AppProvider>
+				<Component {...pageProps} />
+			</AppProvider>
 		</>
 	);
 }

@@ -1,9 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-const LiveGameCard = () => {
+type Props = {
+	path: string;
+}
+const LiveGameCard = ({ path }: Props) => {
 	return (
-		<div className='w-full h-fit border-2 border-gray rounded-md p-4 pt-7 text-center relative flex justify-between items-center'>
+		<Link href={path} className='w-full cursor-pointer h-fit border-2 border-gray rounded-md p-4 pt-7 text-center relative flex justify-between items-center'>
 			<div className='flex absolute top-1 left-2'>
 				<span className='rounded-full bg-red-600 w-[10px] h-[10px] p-2'></span>
 				<span className=' text-sm font-bold ml-1'>Live</span>
@@ -50,7 +54,7 @@ const LiveGameCard = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 };
 

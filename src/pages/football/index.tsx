@@ -22,6 +22,7 @@ const IndexFootball = () => {
 
 					</div>
 				</div>
+				<LiveGameCard path='/match/23' />
 			</div>
 		</MainLayout>
 	);

@@ -5,8 +5,15 @@ export default {
     type: "document",
     preview: {
         select: {
-            title: "name",
+            title: "title",
+            subtitle: "category"
         },
+        prepare({ title, subtitle }) {
+            return {
+                title: title,
+                subtitle: subtitle ? `category : ${subtitle}` : "no category"
+            }
+        }
     },
     fields: [
         {
@@ -28,7 +35,7 @@ export default {
             name: "date",
             title: "Date",
             description: "the date for the match day",
-            type: "date",   
+            type: "date",
             validation: rule => rule.required()
         },
         {
@@ -38,9 +45,24 @@ export default {
             validation: Rule => Rule.required().warning(
                 "please provide matches which will take place on this matchday"
             ),
-            of: [
-                { type: "match" }
-            ]
-        }
+            of: [{ type: "reference", to: { type: "match" } }]
+        },
+        // category
+        {
+            name: "category",
+            title: "Category",
+            type: "string",
+            description: "The category of the matchday ex : football, basketball, ...",
+            options: {
+                list: [
+                    { title: "Football", value: "football" },
+                    { title: "Basketball", value: "basketball" },
+                    { title: "Volleyball", value: "volleyball" },
+                    { title: "Tennis", value: "tennis" },
+                    { title: "PingPong", value: "pingpong" },
+                ]
+            },
+            validation: rule => rule.required()
+        },
     ]
 }

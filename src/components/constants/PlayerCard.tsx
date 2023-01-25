@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Player } from "../../utils/types/foot";
+import { Player } from "../../utils/types/types1";
 
 const PlayerCard = ({
 	displayName,
@@ -20,7 +20,10 @@ const PlayerCard = ({
 			/>
 			<p className='text-left font-bold '>{displayName}</p>
 			{position?.map((pos, key) => (
-				<p key={key} className='text-left capitalize font-bold text-slate-600 text-xs'>
+				<p
+					key={key}
+					className='text-left capitalize font-bold text-slate-600 text-xs'
+				>
 					{pos}
 				</p>
 			))}

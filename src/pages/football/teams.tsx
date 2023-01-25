@@ -4,12 +4,15 @@ import TeamCard from '../../components/constants/TeamCard'
 import { GetStaticProps } from 'next';
 import { teamsFootQuery } from '../../lib/queries';
 import { sanityClient } from '../../lib/sanity';
+import { Team } from '../../utils/types/types1';
 
-const TeamsIndex = ({teams}) => {
+const TeamsIndex = ({teams}: {teams: Team[]}) => {
   return (
 		<MainLayout>
-			<div className='w-full h-fit flex-wrap flex  '>
-			{teams.map((team)=>(<TeamCard key={team._id} name={team.name} desc={team.category}/>))}
+			<div className='w-full h-fit grid desktop:flex flex-wrap desktop:gap-1 gap-3 md:grid-cols-2'>
+				{teams.map((team) => (
+					<TeamCard key={team._id} {...team} />
+				))}
 			</div>
 		</MainLayout>
 	);

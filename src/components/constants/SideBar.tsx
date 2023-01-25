@@ -3,7 +3,7 @@ import React from "react";
 
 const SideBar = () => {
 	return (
-		<div className=' flex flex-col h-full max-w-[300px] w-1/4 gap-y-4 overflow-y-auto min-w-[200px]'>
+		<div className=' tab:flex hidden flex-col h-full max-w-[300px] w-1/4 gap-y-4 overflow-y-auto min-w-[200px]'>
 			<input
 				placeholder='Search...'
 				className=' outline-none border-divBack border-2 rounded-md px-4  py-2 focus:border-orange duration-300 w-full'
@@ -25,13 +25,18 @@ const SideBar = () => {
 			</div>
 			<div className='flex flex-col gap-y-2'>
 				<span className='px-2'>Fixtures</span>
-				<div className='flex flex-col p-3 py-5 rounded-md gap-y-2 border-divBack border-2'>
+				<div className='flex flex-col py-5 rounded-md  border-divBack border-2'>
 					{new Array(6).fill(0).map((v, i) => (
-						<span key={i}>Matchday {i + 1}</span>
+						<span
+							className=' w-full p-2 hover:bg-orange/20 duration-300 cursor-pointer rounded-md'
+							 key={i}
+						>
+							Matchday {i + 1}
+						</span>
 					))}
 				</div>
 			</div>
-			<div className='flex flex-col gap-y-2'>
+			{/* <div className='flex flex-col gap-y-2'>
 				<span className='px-2'>Teams</span>
 				<div className='flex flex-col p-3 py-5 rounded-md gap-y-2 border-divBack border-2'>
 					{new Array(6).fill(0).map((v, i) => (
@@ -41,7 +46,7 @@ const SideBar = () => {
 						</div>
 					))}
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };

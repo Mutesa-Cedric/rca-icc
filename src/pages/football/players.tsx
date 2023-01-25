@@ -4,7 +4,7 @@ import PlayerCard from "../../components/constants/PlayerCard";
 import MainLayout from "../../layouts/MainLayout";
 import { playersFootQuery, playersQuery } from "../../lib/queries";
 import { sanityClient } from "../../lib/sanity";
-import { Player } from "../../utils/types/foot";
+import { Player } from "../../utils/types/types1";
 
 type PlayerProps = {
 	teamPlayers: Array<{
@@ -28,7 +28,7 @@ const PlayersIndex = ({ teamPlayers }: PlayerProps) => {
 					))}
 				</div> */}
 				{teamPlayers.map((team) => (
-					<div key={team._id} >
+					<div key={team._id}>
 						<h1 className='px-3 font-semibold my-3'>{team.name}</h1>
 						<div className='flex gap-3 flex-wrap w-full mt-3'>
 							{team.players.map((player) => (

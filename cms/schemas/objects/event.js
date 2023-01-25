@@ -29,9 +29,6 @@ export default {
             name: "time",
             type: "number",
             description: "the time for the event (ex : a minute in a match)",
-            validation: Rule => Rule.required().min(1).max(300).warning(
-                "please provide a time for this event"
-            )
         },
     ]
 }
