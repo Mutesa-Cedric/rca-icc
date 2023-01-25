@@ -40,7 +40,7 @@ const PlayersIndex = ({ teamPlayers }: PlayerProps) => {
 			</div>
 		</MainLayout>
 	);
-};
+}; 
 
 export default PlayersIndex;
 

@@ -9,11 +9,11 @@ const MatchCard = () => {
         <div className='p-6 flex gap-4'>
             <div >
             <div className='flex gap-2 text-center mb-4'>
-                <Image src='./images/teamImage.svg' width={20} height={10}/>
+                <Image src='/images/teamImage.svg' width={20} height={10}/>
                 <p className='text-slate text-sm font-bold' >Y1 Coding</p>
             </div>
             <div className='flex gap-2 text-center mb-2'>
-                <Image src='./images/teamImage2.svg' width={20} height={10}/>
+                <Image src='/images/teamImage2.svg' width={20} height={10}/>
                 <p className='text-slate text-sm font-bold' >TVET L5</p>
             </div>
             </div>

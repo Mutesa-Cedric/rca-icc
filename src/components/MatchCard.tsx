@@ -31,24 +31,24 @@ const MatchCard = ({
 			<div className='lg:p-6 p-3 flex justify-center w-full gap-y-2 flex-col'>
 				<div className='flex gap-2 text-center'>
 					<Image
-						src={homeTeam.logo ?? "./images/teamImage.svg"}
+						src={homeTeam?.logo ?? "./images/teamImage.svg"}
 						width={20}
 						height={10}
 						alt={""}
 					/>
 					<p className='text-slate text-sm text-start font-bold'>
-						{homeTeam.name}
+						{homeTeam?.name}
 					</p>
 				</div>
 				<div className='flex gap-2 text-center'>
 					<Image
-						src={awayTeam.logo ?? "./images/teamImage2.svg"}
+						src={awayTeam?.logo ?? "./images/teamImage2.svg"}
 						width={20}
 						height={10}
 						alt={""}
 					/>
 					<p className='text-slate text-sm text-start font-bold'>
-						{awayTeam.name}
+						{awayTeam?.name}
 					</p>
 				</div>
 			</div>
