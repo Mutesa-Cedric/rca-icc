@@ -1,10 +1,23 @@
-import { groq } from "next-sanity";
+ import { groq } from "next-sanity";
 
 export const playersQuery = groq`*[_type == "player"]{
     _id,
     displayName,
     fullName,
     "profile": profile.asset->url,
+}`
+export const matchdaysQuery = (matchdayname: string) =>groq `*[_type == "matchDay" && category =="football" && title == '${matchdayname}']{
+    _id,
+    title,
+    date,
+    matches[]->{
+        _id,
+        "homeTeam":homeTeam.name,
+        "awayTeam":awayTeam.name,
+        category,
+        status,
+        date,
+    }
 }`
 
 export const teamsFootQuery = groq`*[_type == "team" && category == "football"]{
@@ -35,6 +48,7 @@ export const playersFootQuery = groq`*[_type == "team" && category == "football"
         "profile": profile.asset->url,
     },
 }`
+
 
 export const teamsBasketQuery = groq`*[_type == "team" && category == "basketball"] {
     _id,

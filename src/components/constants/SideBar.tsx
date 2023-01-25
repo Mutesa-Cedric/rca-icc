@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 const SideBar = () => {
 	return (
@@ -27,13 +28,15 @@ const SideBar = () => {
 				<span className='px-2'>Fixtures</span>
 				<div className='flex flex-col py-5 rounded-md  border-divBack border-2'>
 					{new Array(6).fill(0).map((v, i) => (
+						<Link href={`/day/matchday${i+1}`}>
 						<span
 							className=' w-full p-2 hover:bg-orange/20 duration-300 cursor-pointer rounded-md'
 							 key={i}
 						>
 							Matchday {i + 1}
 						</span>
-					))}
+						</Link>
+))}
 				</div>
 			</div>
 			{/* <div className='flex flex-col gap-y-2'>

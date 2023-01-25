@@ -86,3 +86,13 @@ export type Match = {
         };
     };
 }
+
+export type MatchDay ={
+    _id:string;
+    title:string;
+    date:string;
+    matches:Match[];
+    category:string;
+       
+    
+}
