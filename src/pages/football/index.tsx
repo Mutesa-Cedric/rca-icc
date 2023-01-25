@@ -1,31 +1,50 @@
-import React from 'react'
-import LiveGameCard from '../../components/constants/LiveGameCard';
-import MatchCard from '../../components/MatchCard';
-import MainLayout from '../../layouts/MainLayout'
+import Link from "next/link";
+import React from "react";
+import LiveGameCard from "../../components/constants/LiveGameCard";
+import Table from "../../components/constants/Table";
+import MatchCard from "../../components/MatchCard";
+import { useApp } from "../../contexts/AppProvider";
+import MainLayout from "../../layouts/MainLayout";
 
 const IndexFootball = () => {
-  return (
+	const { teams, matches } = useApp();
+	console.log(teams);
+	
+	const unfinishedMatches = matches?.filter(
+		(match) => match.status?.status !== "FT" && match.category === "football"
+	);
+	const upComingMatches = unfinishedMatches?.slice(0, 5);
+	return (
 		<MainLayout title='Football'>
-			<div className='flex w-full flex-col mx-auto max-w-[800px]'>
-				<LiveGameCard path='/match/13'/>
-				<div className='w-full h-fit p-4 mt-4 border-2 border-gray rounded-md'>
-					<h3 className='text-slate-700 font-bold pb-4'>Upcoming Events</h3>
-					<div className=' flex-wrap p-2 grid grid-cols-2 gap-4'>
-
-						<MatchCard/>
-						<MatchCard/>
-						<MatchCard/>
-						<MatchCard/>
-						<a  href={'football/fixtures'} className='  text-blue cursor-pointer'>
-							see all >>
-						</a>
-
+			<div className='flex flex-col w-full gap-y-3'>
+				{/* <div className='flex w-full flex-col mx-auto max-w-[800px]'>
+				<LiveGameCard path='/match/23' />
+			</div> */}
+				<div className='flex flex-col border-2 rounded-md p-2 border-gray'>
+					<div className='p-3 gap-y-3'>
+						<div className='float-left font-bold text-lg px-3'>
+							<h3>Football Standings</h3>
+						</div>
+						<Table teams={teams?.football!} />
 					</div>
 				</div>
-				
+				<div className='flex flex-col border-2 rounded-md p-2 border-gray'>
+					<h1 className='text-xl font-semibold'>Upcoming Matches</h1>
+					<div className='flex w-full mt-4 flex-wrap gap-2'>
+						{upComingMatches?.map((match, i) => (
+							<MatchCard key={match._id} {...match} />
+						))}
+					</div>
+					<Link
+						href={"/football/fixtures"}
+						className='w-fit mt-4 px-3 py-2 text-blue flex items-center hover:text-[#1a44da] duration-300 rounded-md'
+					>
+						See All Fixtures<span className='ml-2 mt-1'>{">>"}</span>
+					</Link>
+				</div>
 			</div>
 		</MainLayout>
 	);
-}
+};
 
-export default IndexFootball
+export default IndexFootball;

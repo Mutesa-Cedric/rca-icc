@@ -7,7 +7,13 @@ export type Player = {
     fullName: string;
     profile: string;
     goals: number;
-    assists: number;
+    footballAssists: number;
+    basketballAssists: number;
+    steals: number;
+    blocks: number;
+    rebounds: number;
+    points: number;
+    fouls: number;
     redCards: number;
     yellowCards: number;
     number: number;

@@ -13,6 +13,7 @@ const Fixtures = () => {
 			capitalize(router.pathname.split("/")[2]) +
 			" - " +
 			capitalize(router.pathname.split("/")[1]);
+			
   return (
 		<MainLayout title={title}>
 			<h1 className='my-2 font-semibold'>Today</h1>

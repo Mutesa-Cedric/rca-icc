@@ -13,16 +13,18 @@ const Table = ({ teams }: Props) => {
 	return (
 		<table>
 			<thead>
-				<th></th>
-				<th></th>
-				<th>P</th>
-				<th>W</th>
-				<th>D</th>
-				<th>L</th>
-				<th>GF</th>
-				<th>GA</th>
-				<th>GD</th>
-				<th>PTS</th>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>P</th>
+					<th>W</th>
+					<th>D</th>
+					<th>L</th>
+					<th>GF</th>
+					<th>GA</th>
+					<th>GD</th>
+					<th>PTS</th>
+				</tr>
 			</thead>
 			<tbody>
 				{standings.map((team, index) => (

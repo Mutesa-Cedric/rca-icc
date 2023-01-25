@@ -31,8 +31,8 @@ const PlayersIndex = ({ teamPlayers }: PlayerProps) => {
 					<div key={team._id}>
 						<h1 className='px-3 font-semibold my-3'>{team.name}</h1>
 						<div className='flex gap-3 flex-wrap w-full mt-3'>
-							{team.players.map((player) => (
-								<PlayerCard key={player._id} {...player} />
+							{team.players.map((player, i) => (
+								<PlayerCard key={i} {...player} />
 							))}
 						</div>
 					</div>
