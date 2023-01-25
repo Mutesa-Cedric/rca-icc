@@ -9,7 +9,7 @@ const TeamsIndex = ({teams}) => {
   return (
 		<MainLayout>
 			<div className='w-full h-fit flex-wrap flex  '>
-			{teams.map(team=> <TeamCard key={team._id}/>)}
+			{teams.map((team)=>(<TeamCard key={team._id} name={team.name} desc={team.category}/>))}
 			</div>
 		</MainLayout>
 	);

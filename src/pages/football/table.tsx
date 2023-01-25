@@ -2,6 +2,7 @@ import React from 'react'
 import Table from '../../components/constants/Table';
 import MainLayout from '../../layouts/MainLayout'
 
+
 const FootTableIndex = () => {
   return (
 		<MainLayout>
