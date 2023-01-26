@@ -7,3 +7,29 @@ export const AllPlayersStatsQuery = groq`*[_type == "team"]{
     category,
     players[]->${allPlayerFields},
 }`
+
+export const fetchMatchDayTitleQuery = (title: string) => groq`*[_type == "matchDay" && title == "${title}"]{
+    _id,
+    title,
+    category,
+    description,
+    date,
+    "matches": matches[]->{
+        _id,
+        title,
+        description,
+        date,
+        "homeTeam": homeTeam->{
+        _id,
+        name,
+        "logo": logo.asset->url,
+        },
+        "awayTeam": awayTeam->{
+            _id,
+            name,
+            "logo": logo.asset->url,
+        },
+        status,
+        stats,
+    },
+}`

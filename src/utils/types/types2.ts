@@ -1,4 +1,4 @@
-import { Player, Team } from "./types1";
+import { category, Match, Player, Team } from "./types1";
 
 export type RefType = {
     _ref?: string;
@@ -20,4 +20,12 @@ export type TeamGroups = {
     volleyball: Team[];
     pingpong: Team[];
     debate: Team[];
+}
+
+export type MatchDayType = {
+    title: string;
+    description: string;
+    date: Date;
+    matches: Match[];
+    category: category;
 }

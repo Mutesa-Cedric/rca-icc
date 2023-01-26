@@ -3,8 +3,10 @@ import MainLayout from '../../layouts/MainLayout'
 
 const IndexPing = () => {
   return (
-		<MainLayout>
-			<div>IndexPing</div>
+		<MainLayout isGeneral title='Pingpong'>
+			<div className=' h-full flex items-center flex-col justify-center'>
+				<h1 className=' text-xl font-semibold'>Comming Soon as Fixtures are not comfirmed</h1>
+			</div>
 		</MainLayout>
 	);
 }

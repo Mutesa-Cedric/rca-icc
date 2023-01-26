@@ -1,11 +1,11 @@
-import React from 'react'
-import TeamCard from '../../components/constants/TeamCard';
-import { useApp } from '../../contexts/AppProvider';
-import MainLayout from '../../layouts/MainLayout'
+import React from "react";
+import TeamCard from "../../components/constants/TeamCard";
+import { useApp } from "../../contexts/AppProvider";
+import MainLayout from "../../layouts/MainLayout";
 
 const TeamsIndex = () => {
 	const { teams } = useApp();
-  return (
+	return (
 		<MainLayout>
 			<h1 className=' text-lg font-semibold px-3'>BasketBall Teams</h1>
 			<div className='w-full h-fit grid desktop:flex flex-wrap desktop:gap-1 gap-3 md:grid-cols-2'>
@@ -15,6 +15,6 @@ const TeamsIndex = () => {
 			</div>
 		</MainLayout>
 	);
-}
+};
 
-export default TeamsIndex
+export default TeamsIndex;

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import BasketTable from '../../components/constants/BasketTable';
 import Table from '../../components/constants/Table';
 import MatchCard from '../../components/MatchCard';
 import { useApp } from '../../contexts/AppProvider';
@@ -21,7 +22,7 @@ const IndexBasket = () => {
 						<div className='float-left font-bold text-lg px-3'>
 							<h3>Basketball Standings</h3>
 						</div>
-						<Table teams={teams?.basketball!} />
+						<BasketTable teams={teams?.basketball!} />
 					</div>
 				</div>
 				<div className='flex flex-col border-2 rounded-md p-2 border-gray'>

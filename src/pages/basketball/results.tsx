@@ -1,12 +1,13 @@
-import React from 'react'
-import MatchCard from '../../components/MatchCard';
-import { useApp } from '../../contexts/AppProvider';
-import MainLayout from '../../layouts/MainLayout'
+import React from "react";
+import MatchCard from "../../components/MatchCard";
+import { useApp } from "../../contexts/AppProvider";
+import MainLayout from "../../layouts/MainLayout";
 
 const ResultsIndex = () => {
-  const { matches } = useApp();
+	const { matches } = useApp();
 	const finishedMatches = matches?.filter(
-		(match) => match?.status?.status === "FT" && match?.category === "basketball"
+		(match) =>
+			match?.status?.status === "FT" && match?.category === "basketball"
 	);
 	return (
 		<MainLayout title='BasketBall'>
@@ -20,6 +21,6 @@ const ResultsIndex = () => {
 			</div>
 		</MainLayout>
 	);
-}
+};
 
-export default ResultsIndex
+export default ResultsIndex;

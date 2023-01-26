@@ -72,6 +72,19 @@ export const playersBaccoQuery = groq`*[_type == "team" && category == "basketba
     },
 }`
 
+export const playersVolleyQuery = groq`*[_type == "team" && category == "volleyball"]{
+    _id,
+    name,
+    category,
+    players[]->{
+        _id,
+        displayName,
+        fullName,
+        position,
+        "profile": profile.asset->url,
+    },
+}`
+
 export const fetchPlayersAllQuery = groq`*[_type == "player"]${allPlayerFields}`
 
 export const teamsBasketQuery = groq`*[_type == "team" && category == "basketball"] {

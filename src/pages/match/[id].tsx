@@ -81,10 +81,10 @@ const MatchPage = () => {
 						</div>
 						{hasStarted && !isBasketball && (
 							<div className='flex flex-col gap-y-1'>
-								<div className=' gap-x-2'>
+								{/* <div className=' gap-x-2'>
 									<span className='text-md font-bold text-sm'>34'</span>
 									<span className='text-slate p-2 text-sm'>Jonas</span>
-								</div>
+								</div> */}
 							</div>
 						)}
 					</div>
@@ -118,10 +118,10 @@ const MatchPage = () => {
 						</div>
 						{hasStarted && !isBasketball && (
 							<div className='flex flex-col gap-y-1'>
-								<div className='gap-x-2 flex'>
+								{/* <div className='gap-x-2 flex'>
 									<span className='text-slate text-sm'>Charles</span>
 									<span className='text-md font-bold text-sm'>50'</span>
-								</div>
+								</div> */}
 							</div>
 						)}
 					</div>
